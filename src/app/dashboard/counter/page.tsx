@@ -1,8 +1,18 @@
+import { CartCounter } from "@/app/shopping-cart";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Shopping cart',
+  description: 'Description Counter'
+}
 
 export default function CounterPage() {
+  
+
   return (
-    <div>
-      <h1>counter Page</h1>
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      <span>Productos en el Carrito</span>
+      <CartCounter value={20} />
     </div>
   );
 }
