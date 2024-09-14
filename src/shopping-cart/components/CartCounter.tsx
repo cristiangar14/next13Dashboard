@@ -5,13 +5,28 @@ import { useEffect } from "react";
 interface props {
   value: number;
 }
+
+interface CounterResponse {
+  method: string;
+  count: number;
+};
+
+const getApiCounter = async(): Promise<CounterResponse> =>{
+  const data = await fetch('/api/counter').then( res => res.json())
+  return data
+}
+
 export const CartCounter = ({ value = 0 }: props) => {
   const count = useAppSelector((state) => state.counter.count);
   const dispach = useAppDispatch();
 
+  // useEffect(() => {
+  //   dispach( initCounterState(value) )
+  // }, [dispach, value]);
+
   useEffect(() => {
-    dispach( initCounterState(value) )
-  }, [dispach, value]);
+    getApiCounter().then( ({ count }) => dispach( initCounterState(count) ))
+  }, [dispach]);
 
   return (
     <>
