@@ -5,8 +5,13 @@ interface PokemonsFavoriteState{
   [key: string]: SimplePokemon;
 }
 
+const getIitialState = (): PokemonsFavoriteState => {
+  const favorites = JSON.parse( localStorage.getItem('favorite-pokemons') ?? '{}');
+  return favorites
+}
+
 const initialState: PokemonsFavoriteState = {
-  '1': { id: '1', name: 'bulbasaur'}
+  ...getIitialState()
 }
 
 const pokemonsSlice = createSlice({
@@ -27,7 +32,7 @@ const pokemonsSlice = createSlice({
 });
 
 export const {
-  toggleFavorite,
+  toggleFavorite
 } = pokemonsSlice.actions
 
 export default pokemonsSlice.reducer
