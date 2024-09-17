@@ -2,20 +2,25 @@
 
 import { useAppSelector } from "@/store"
 import { PokemonGrid } from "./PokemonGrid"
-import { useState } from "react";
 import { IoHeartOutline } from "react-icons/io5";
-import { SimplePokemon } from "../interfaces/simple-pokemon";
+// import { SimplePokemon } from "../interfaces/simple-pokemon";
+// import { useEffect, useState } from "react";
 
 export const FavoritePokemos = () => {
-  const favoritePokemons = useAppSelector( state => Object.values(state.pokemons) );
+  const favoritePokemons = useAppSelector( state => Object.values(state.pokemons.favorites) );
 
-  const [pokemons, setPokemons] = useState<SimplePokemon[]>(favoritePokemons);
+  // const [pokemons, setPokemons] = useState<SimplePokemon[]>(favoritePokemons);
+
+  // useEffect(() => {
+  //   setPokemons(favoritePokemons)
+   
+  // }, [favoritePokemons]);
 
   return (
     <>
       {
-        pokemons.length 
-        ? (<PokemonGrid pokemons={ pokemons } />)
+        favoritePokemons.length 
+        ? (<PokemonGrid pokemons={ favoritePokemons } />)
         : (<NoFavorites />)
       }
     </>
